@@ -10,7 +10,7 @@ package modelo;
  */
 public class Candidato {
 
-     private String nombre;
+    private String nombre;
     private int votos;
 
     public Candidato(String nombre) {
@@ -31,13 +31,15 @@ public class Candidato {
     }
 
     public double getPorcentaje(int totalVotos) {
-        if (totalVotos == 0) return 0;
+        if (totalVotos == 0) {
+            return 0;
+        }
         return (votos * 100.0) / totalVotos;
     }
 
     public String mostrar(int totalVotos) {
-        return nombre +
-                " | Votos: " + votos +
-                " | " + String.format("%.2f", getPorcentaje(totalVotos)) + "%";
+        return nombre
+                + " | Votos: " + votos
+                + " | " + String.format("%.2f", getPorcentaje(totalVotos)) + "%";
     }
 }

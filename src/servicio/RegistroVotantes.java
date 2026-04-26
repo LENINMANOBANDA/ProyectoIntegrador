@@ -11,30 +11,18 @@ public class RegistroVotantes {
 
     private HashMap<String, Votante> votantes = new HashMap<>();
 
-    public boolean registrar(String cedula) {
-
-        if (!votantes.containsKey(cedula)) {
-            votantes.put(cedula, new Votante(cedula));
-        }
-
-        return true;
+    public void registrar(String cedula, String clave) {
+        votantes.putIfAbsent(cedula, new Votante(cedula, clave));
     }
 
-    public boolean puedeVotar(String cedula) {
+    public Votante login(String cedula, String clave) {
 
         Votante v = votantes.get(cedula);
 
-        if (v == null) return false;
-
-        return !v.yaVoto();
-    }
-
-    public void marcarVoto(String cedula) {
-
-        Votante v = votantes.get(cedula);
-
-        if (v != null) {
-            v.marcarVoto();
+        if (v != null && v.login(cedula, clave)) {
+            return v;
         }
+
+        return null;
     }
 }

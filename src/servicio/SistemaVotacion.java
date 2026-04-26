@@ -36,7 +36,12 @@ public class SistemaVotacion {
 
     public void mostrarCandidatos() {
 
-        System.out.println(" CANDIDATOS:");
+        if (candidatos.isEmpty()) {
+            System.out.println("❌ No hay candidatos registrados");
+            return;
+        }
+
+        System.out.println("\n📋 CANDIDATOS:");
 
         int total = getTotalVotos();
 
@@ -48,12 +53,12 @@ public class SistemaVotacion {
                     ? 0
                     : (c.getVotos() * 100.0 / total);
 
-            System.out.println(i + ". " + c.getNombre()
+            System.out.println((i + 1) + ". " + c.getNombre()
                     + " | Votos: " + c.getVotos()
                     + " | " + String.format("%.2f", porcentaje) + "%");
         }
 
-        System.out.println(" Total votos : " + total);
+        System.out.println("Total votos: " + total);
     }
 
     public int getTotalVotos() {
@@ -70,6 +75,7 @@ public class SistemaVotacion {
     public void mostrarGanador() {
 
         if (candidatos.isEmpty()) {
+            System.out.println("❌ No hay datos");
             return;
         }
 
@@ -81,12 +87,16 @@ public class SistemaVotacion {
             }
         }
 
-        System.out.println(" GANADOR: " + ganador.getNombre()
+        System.out.println("\n🏆 GANADOR: " + ganador.getNombre()
                 + " con " + ganador.getVotos() + " votos");
     }
 
-    // 🏆 RANKING CON BARRAS
     public void mostrarRankingConBarras() {
+
+        if (candidatos.isEmpty()) {
+            System.out.println("❌ No hay datos");
+            return;
+        }
 
         ArrayList<Candidato> ordenados = new ArrayList<>(candidatos);
 
@@ -94,7 +104,7 @@ public class SistemaVotacion {
 
         int total = getTotalVotos();
 
-        System.out.println(" RANKING CON BARRAS");
+        System.out.println("\n📊 RANKING");
 
         int pos = 1;
 

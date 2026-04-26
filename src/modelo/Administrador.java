@@ -4,26 +4,20 @@
  */
 package modelo;
 
-public class Votante extends Persona {
+/**
+ *
+ * @author USUARIO
+ */
+public class Administrador extends Persona {
 
-    private boolean yaVoto;
     private String clave;
 
-    public Votante(String cedula, String clave) {
+    public Administrador(String cedula, String clave) {
         super(cedula);
         this.clave = clave;
-        this.yaVoto = false;
     }
 
     public boolean login(String cedula, String clave) {
         return this.cedula.equals(cedula) && this.clave.equals(clave);
-    }
-
-    public boolean yaVoto() {
-        return yaVoto;
-    }
-
-    public void marcarVoto() {
-        yaVoto = true;
     }
 }
